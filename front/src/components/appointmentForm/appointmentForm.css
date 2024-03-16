@@ -1,0 +1,70 @@
+.appointmentsFormContainer {
+  background-color: var(--selective-yellow-100);
+  backdrop-filter: blur(0.4rem);
+  border-radius: 10px;
+  padding: 0 1em;
+  margin: 1.5em;
+  margin-top: 6em;
+  max-width: 100%;
+}
+
+
+.appointmentItem{
+  margin: 1.5em;
+}
+
+.card-header>p{
+  margin: 10px;
+}
+
+.tarjeta textarea {
+  width: 95%; /* Ancho del textarea */
+  height: 100px; /* Altura del textarea */
+  margin: 10px 0 10px 0; /* Espacio inferior */
+  padding: 5px;
+  resize: none;
+}
+
+.imputsForm{
+  height: 1.5em;
+  background-color: var(--selective-yellow-100);
+  color: black;
+}
+.selectForm{
+  border-radius: 0.5em;
+  height: 2.5em;
+  width: 95%;
+  background-color: var(--selective-yellow-100);
+  color: black;
+}
+
+#notes {
+  background-color: var(--selective-yellow-100);
+  color: rgb(0, 0, 0);
+}
+
+label{
+  color:black;
+}
+
+/* Estilo para cambiar el color del icono de fecha en Chrome y Edge */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invertir el color del icono */
+}
+
+/* Estilo para cambiar el color del icono de fecha en Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+  filter: invert(1); /* Invertir el color del icono */
+}
+
+/* Estilo para cambiar el color del icono de hora en Chrome y Edge */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invertir el color del icono */
+}
+
+/* Estilo para cambiar el color del icono de hora en Firefox */
+input[type="time"]::-moz-calendar-picker-indicator {
+  filter: invert(1); /* Invertir el color del icono */
+}
+
+

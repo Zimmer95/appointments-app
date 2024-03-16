@@ -1,0 +1,54 @@
+/* Reset CSS */
+
+/* Establecer el margen y el relleno a cero */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; */
+  
+  /* Establecer la fuente y el color por defecto */
+  body {
+    /* height: 100vh !important;
+    width: 100vw !important; *//* 
+    font-family: Arial, sans-serif; /* Cambiar según las preferencias */
+    /* font-size: 16px;
+    color: #333; */
+  }
+  
+  /* Eliminar la decoración del enlace */
+  a {
+    /* text-decoration: none;
+    color: inherit;  */
+  }
+  
+  /* Eliminar las viñetas de las listas */
+  /* ul, ol {
+    list-style: none;
+  }
+   */
+  /* Establecer márgenes y relleno por defecto */
+  img {
+    max-width: 100%; /* Evitar que las imágenes se desborden de su contenedor */
+  }
+  
+  /* Otros elementos de reinicio opcionales */
+  /* h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: normal;
+  } */
+  
+  /* button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+  } */
+  
+  /* etc. */
+  
+
+  /* @media(max-width: 320px){
+    body {
+      min-height: 100%;
+      width: 100%;
+    }
+    
+  } */

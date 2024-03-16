@@ -1,0 +1,9 @@
+.errorPage{
+    background-color: var(--selective-yellow-100);
+    backdrop-filter: blur(0.4rem);
+    border-radius: 10px;
+    padding: 0 1em;
+    margin: 1.5em;
+    margin-top: 6em;
+    max-width: 100%;
+  }

@@ -1,0 +1,23 @@
+
+.manejadorDeComponentes{
+  display: grid;
+  justify-content: center;
+  margin-top: 6em;
+  max-width: 100% ;
+  justify-items: center;
+}
+image {
+  background-color: var(--selective-yellow-500);
+}
+.button {
+  margin: 10px;
+}
+.read-the-docs {
+  color: var(--selective-yellow-100);
+}
+
+/* @media (max-width: 425px) {
+  .manejadorDeComponentes {
+    width: 100%; /* Cambia el ancho a 100% cuando la pantalla sea menor o igual a 400px */
+/*   }
+}  */

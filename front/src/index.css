@@ -1,0 +1,118 @@
+:root {
+  --selective-yellow-50: #fffeea;
+  --selective-yellow-100: #fffac5;
+  --selective-yellow-200: #fff685;
+  --selective-yellow-300: #ffeb46;
+  --selective-yellow-400: #ffdb1b;
+  --selective-yellow-500: #fcb900;
+  --selective-yellow-600: #e29000;
+  --selective-yellow-700: #bb6602;
+  --selective-yellow-800: #984e08;
+  --selective-yellow-900: #7c400b;
+  --selective-yellow-950: #482100;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  background-image: radial-gradient(
+    circle,
+    var(--selective-yellow-600),
+    var(--selective-yellow-500)
+  );
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: black;
+
+
+  /*background-color: black; */
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media(min-width: ){
+  #root {
+    display: grid;
+    /* justify-items: center;
+    justify-content: center; */
+    text-align: center;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+}
+
+a {
+  font-weight: 500;
+  color: var(--selective-yellow-100);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--selective-yellow-100);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin: 0.5em auto;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--selective-yellow-700);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: var(--selective-yellow-500);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(black);
+    background-color: var(--selective-yellow-500);
+  }
+
+  a:hover {
+    color: var(--selective-yellow-100);
+  }
+
+  button {
+    color: var(black);
+    background-color: var(--selective-yellow-700);
+  }
+
+  .logo {
+    background-color: var(--selective-yellow-700);
+  }
+
+  p {
+    margin: 0.5em auto;
+  }
+}
