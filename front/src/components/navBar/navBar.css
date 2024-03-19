@@ -117,3 +117,25 @@ hr{
   width: 0px !important;
   font-size: 0px;
 }
+
+.sep{
+  max-width: 1.5em;
+}
+
+.btnSalir{
+  background-color: rgba(240, 248, 255, 0);
+  margin: 0;
+  font-weight: 500;
+  color: var(--selective-yellow-100);
+  padding: 0;
+  
+}
+.btnSalir:hover{
+  
+  border-color: rgba(245, 222, 179, 0);
+}
+
+.btnSalir:focus,
+.btnSalir:focus-visible {
+  outline: 0px auto rgba(255, 255, 255, 0);
+}

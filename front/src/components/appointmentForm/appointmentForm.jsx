@@ -2,9 +2,27 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { NavLink } from "react-router-dom";
 import "./appointmentForm.css";
+import { useSelector } from "react-redux";
 
 const AppointmentForm = ({ onButtonClick }) => {
-  
+  const userName = useSelector((state) => state.userReducer.userData.name);
+
+  // Obtener la fecha actual
+  const currentDate = new Date();
+
+  // Calcular la fecha límite permitida (por ejemplo, 7 días hábiles después de la fecha actual)
+  const daysToWait = 14; // Puedes ajustar este valor según tus necesidades
+  let businessDaysCounter = 0;
+  let currentDateCopy = new Date(currentDate.getTime());
+  while (businessDaysCounter < daysToWait) {
+    currentDateCopy.setDate(currentDateCopy.getDate() + 1);
+    const dayOfWeek = currentDateCopy.getDay();
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+      businessDaysCounter++;
+    }
+  }
+  const maxDate = currentDateCopy.toISOString().split("T")[0]; // Formato YYYY-MM-DD
+
   return (
     <div className="cardLogin">
       <div className="card-header">
@@ -18,7 +36,7 @@ const AppointmentForm = ({ onButtonClick }) => {
           status: "active",
           patientName: "",
           doctorName: "",
-          durationMinutes: "",
+          durationMinutes: "30",
           location: "",
           notes: "",
         }}
@@ -37,7 +55,6 @@ const AppointmentForm = ({ onButtonClick }) => {
           notes: Yup.string(),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          alert(JSON.stringify(values, null, 2));
           onButtonClick(values);
           setSubmitting(false);
         }}
@@ -46,12 +63,47 @@ const AppointmentForm = ({ onButtonClick }) => {
           <div className="tarjeta">
             <label htmlFor="date">Fecha</label>
             <div>
-              <Field className="imputsForm" id="date" name="date" type="date" />
+              <Field
+                className="imputsForm"
+                id="date"
+                name="date"
+                type="date"
+                min={currentDate.toISOString().split("T")[0]} // Deshabilitar fechas anteriores a hoy
+                max={maxDate} // Establecer la fecha máxima permitida
+              />
               <ErrorMessage name="date" component="div" className="error" />
             </div>
             <label htmlFor="time">Hora</label>
             <div>
-              <Field className="imputsForm" id="time" name="time" type="time" />
+              <Field
+                className="selectForm"
+                id="time"
+                name="time"
+                component="select"
+              >
+                <option value="" disabled hidden>
+                  Selecciona un horario
+                </option>
+                <option value="08:00">08:00 AM</option>
+                <option value="09:00">09:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 AM</option>
+                <option value="13:00" disabled>
+                  13:00 PM
+                </option>
+                <option value="14:00" disabled>
+                  14:00 PM
+                </option>
+                <option value="15:00" disabled>
+                  15:00 PM
+                </option>
+                <option value="16:00">04:00 PM</option>
+                <option value="17:00">05:00 PM</option>
+                <option value="18:00">06:00 PM</option>
+                <option value="19:00">07:00 PM</option>
+                <option value="20:00">08:00 PM</option>
+              </Field>
               <ErrorMessage name="time" component="div" className="error" />
             </div>
             <label htmlFor="patientName">Nombre del Paciente</label>
@@ -63,7 +115,7 @@ const AppointmentForm = ({ onButtonClick }) => {
                 type="text"
                 component="select"
               >
-                <option value="Jorge Zimmermann">Jorge Zimmermann</option>
+                <option value={userName}>{userName}</option>
                 <option value=""></option>
               </Field>
               <ErrorMessage
@@ -81,7 +133,7 @@ const AppointmentForm = ({ onButtonClick }) => {
                 type="text"
                 component="select"
               >
-                <option value="Nombre del Médico">Nombre del Médico</option>
+                <option value="Dr. Algo">Dr. Algo</option>
                 <option value=""></option>
               </Field>
               <ErrorMessage
@@ -98,6 +150,7 @@ const AppointmentForm = ({ onButtonClick }) => {
                 id="durationMinutes"
                 name="durationMinutes"
                 type="number"
+                disabled
               />
               <ErrorMessage
                 name="durationMinutes"
@@ -136,7 +189,7 @@ const AppointmentForm = ({ onButtonClick }) => {
           </div>
         </Form>
       </Formik>
-      <NavLink to="/home" className={"atras"}>
+      <NavLink to="/" className={"atras"}>
         Atrás
       </NavLink>
     </div>

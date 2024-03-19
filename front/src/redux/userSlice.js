@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { sortActiveFirst } from "../helpers/sortActiveFirst";
 
 const initialState = {
   isLogged: false,
   userData: {},
-  userAppointments: {},
+  userAppointments: [{}],
 };
 
 export const userSlice = createSlice({
@@ -12,19 +13,18 @@ export const userSlice = createSlice({
   reducers: {
     setUserData: (state, action) => {
       state.userData = action.payload;
-      state.userAppointments = action.payload.appointment;
       state.isLogged = true;
     },
 
-    unlogUser: (state, action) => {
+    setUserLogout: (state, action) => {
       state.userData = {};
       state.isLogged = false;
     },
 
     setAppointmentsData: (state, action) => {
-      state.userAppointments = action.payload;
+      state.userAppointments = sortActiveFirst(action.payload);
     },
   },
 });
 
-export const { setUserData, unlogUser, setAppointmentsData } = userSlice.actions;
+export const { setUserData, setUserLogout, setAppointmentsData } = userSlice.actions;

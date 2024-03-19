@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^2.2.1",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.5",
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
@@ -22,6 +26,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/node": "^20.11.28",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",

@@ -1,14 +1,4 @@
 .appointmentsContainer {
-  /* background-color: rgba(255, 255, 255, 0.397);
-  backdrop-filter: blur(0.4rem);
-  border-radius: 10px;
-  margin: 1.5em;
-  margin-top: 6em;
-  max-width: 100%; */
-  /*display: grid;
-  justify-items: center; */
-  /*   background-color: rgba(255, 255, 255, 0.500);*/
-  /* background-color: var(--selective-yellow-100); */
   margin: 0em;
   max-width: 100%;
   border-radius: 10px;
@@ -16,11 +6,6 @@
   padding: 0;
   margin-top: 6em;
 }
-
-.cardLogin{
-  width: 30vw !important;
-}
-
 
 .appointmentsList {
   text-align: start;
@@ -30,12 +15,10 @@
 .contenedor {
   padding: 1.5em;
   margin: 0;
-  
 }
-.contenedor>button {
-  margin: 0 auto; 
+.contenedor > button {
+  margin: 0 auto;
 }
-
 
 .textArea {
   background-color: rgba(255, 255, 255, 0.158);
@@ -48,10 +31,8 @@
   border-right: 10px solid rgb(19, 133, 4);
   border-bottom: 1px solid rgba(0, 0, 0);
   border-top: 1px solid rgba(0, 0, 0);
-  background-color: var(--selective-yellow-100);
   border-radius: 20px;
-
-  /* background: linear-gradient(to left, rgb(19, 133, 4, 0.400), rgba(19, 133, 4, 0.400), rgba(19, 133, 4, 0.400)); */
+  background-color: var(--selective-yellow-100);
 }
 
 .inactivo {
@@ -61,13 +42,12 @@
   border-top: 1px solid rgba(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  /* background: linear-gradient(to left, rgb(236, 9, 1, 0.550 ), rgba(236, 9, 1, 0.400), rgba(236, 9, 1, 0.150)); */
 }
 
 .tarjeta textarea {
-  width: 95%; /* Ancho del textarea */
-  height: 100px; /* Altura del textarea */
-  margin: 10px 0 10px 0; /* Espacio inferior */
+  width: 95%;
+  height: 100px;
+  margin: 10px 0 10px 0;
   padding: 5px;
   resize: none;
 }

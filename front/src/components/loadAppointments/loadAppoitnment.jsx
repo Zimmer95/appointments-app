@@ -1,42 +1,7 @@
 import { NavLink } from "react-router-dom";
-import "./loadAppointments.css"; // Importar los estilos CSS
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { setAppointmentsData, setUserData } from "../../redux/userSlice";
-import axios from "axios";
+import "./loadAppointments.css";
 
-const Appointments = ({ MyAppointments }) => {
-  const dispatch = useDispatch();
-
-  const appointment = useSelector(
-    (state) => state.userReducer.userAppointments
-  );
-
-  /* const isLogged = useSelector((state) => state.user.isLogged); */
-
-  useEffect(() => {
-    const cancel = (evento) => {
-      const toCancelAppointmentId = appointment[evento].id;
-
-      const fetchData = async () => {
-        try {
-          const response = await axios.put(
-            "http://localhost:3000/appointment/cancel/ " + toCancelAppointmentId
-          );
-          const nuevoArreglo = appointment.filter(
-            (item, index) => item !== appointment[evento]
-          );
-          dispatch(setAppointmentsData(nuevoArreglo));
-          alert("Se ha cancelado el turno ");
-        } catch (error) {
-          console.error("Error al cargar los appointments:", error);
-        }
-      };
-      fetchData();
-    };
-    console.log("dentro del use effect   ", appointment);
-  }, [appointment]);
-  
+const Appointments = ({ appointmentsToLoad, cancel }) => {
   return (
     <div className="cardLogin">
       <div className="card-header">
@@ -44,7 +9,7 @@ const Appointments = ({ MyAppointments }) => {
         <p>Por favor, verifica que los datos de tus turnos sean correctos.</p>
       </div>
       <div className="appointmentsList">
-        {appointment.map((appointment, index) => (
+        {appointmentsToLoad.map((appointment, index) => (
           <div key={index} className="appointmentItem">
             <div
               className={
@@ -80,14 +45,20 @@ const Appointments = ({ MyAppointments }) => {
                 />
                 <br />
               </div>
-              <button id={index} onClick={(event) => cancel(event.target.id)}>
+              <button
+                id={index}
+                onClick={(event) => cancel(event.target.id)}
+                disabled={appointment.status === "canceled"
+                ? true
+                : false}
+              >
                 Cancelar
               </button>
             </div>
           </div>
         ))}
       </div>
-      <NavLink to="/home" className={"atras"}>
+      <NavLink to="/" className={"atras"}>
         Atrás
       </NavLink>
     </div>

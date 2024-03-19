@@ -1,7 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { NavLink } from "react-router-dom";
-import "./login.css"; // Importar los estilos CSS
+import React from "react";
+import "./login.css";
 
 const Login = ({ onButtonClick }) => {
   return (
@@ -17,11 +18,11 @@ const Login = ({ onButtonClick }) => {
         }}
         validationSchema={Yup.object({
           username: Yup.string()
-            .email("Invalid email address")
-            .required("Required"),
+            .email("Dirección de correo electrónico inválida")
+            .required("El correo electrónico es obligatorio"),
           password: Yup.string()
-            .required("Required")
-            .min(8, "Password must be at least 8 characters"),
+            .required("La contraseña es obligatoria")
+            .min(8, "La contraseña debe tener al menos 8 caracteres"),
         })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
@@ -30,37 +31,49 @@ const Login = ({ onButtonClick }) => {
           }, 400);
         }}
       >
-        <Form className="card-content">
-          <div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <Field
-                id="username"
-                name="username"
-                placeholder="example@example.com"
-                type="email"
-              />
-              <ErrorMessage name="username" component="div" className="error" />
-            </div>
+        {({ isSubmitting }) => (
+          <Form className="card-content">
             <div>
               <div>
-                <label htmlFor="password">Contraseña</label>
+                <label htmlFor="username">Correo Electrónico</label>
+                <Field
+                  id="username"
+                  name="username"
+                  placeholder="example@example.com"
+                  type="email"
+                />
+                <ErrorMessage
+                  name="username"
+                  component="div"
+                  className="error"
+                />
               </div>
-              <Field
-                id="password"
-                name="password"
-                type="password"
-                placeholder="********************"
-              />
-              <ErrorMessage name="password" component="div" className="error" />
-              <br />
-              <a href="">¿Olvidó su contraseña?</a>
+              <div>
+                <label htmlFor="password">Contraseña</label>
+                <Field
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="********************"
+                />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error"
+                />
+                <br />
+                <NavLink to="/forgot-password">¿Olvidó su contraseña?</NavLink>
+              </div>
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Ingresando..." : "Ingresar"}
+              </button>
             </div>
-            <button type="submit">Ingresar</button>
-          </div>
-        </Form>
+          </Form>
+        )}
       </Formik>
-      <NavLink to="/home" className={"atras"}>Atrás</NavLink>
+      <NavLink to="/" className={"atras"}>
+        Atrás
+      </NavLink>
     </div>
   );
 };

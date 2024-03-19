@@ -1,53 +1,30 @@
 import axios from "axios";
-import Login from "../../components/login/login";
-import Navbar from "../../components/navBar/navBar";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { setUserData } from "../../redux/userSlice";
+import { setAppointmentsData, setUserData } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 
+import Login from "../../components/login/login";
+
 const LoginView = () => {
-
-  const navigate = useNavigate()
-
-  const userData = useSelector(
-    (state) => state.userReducer.userData
-  ); /* 
+  const userData = useSelector((state) => state.userReducer.userData);
   const isLogged = useSelector((state) => state.userReducer.isLogged);
-  const userAppointments = useSelector((state) => state.userReducer.userData); */
-
-  console.log(userData);
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  /* const [loginState, setUserData] = useState({
-  }); */
-
-  const handleButtonClick = async (loginData) => {
+  const handleLogin = async (loginData) => {
     try {
-      // Realizar la solicitud POST para agregar un nuevo turno
       const response = await axios.post(
         "http://localhost:3000/user/validate/",
         loginData
       );
 
-      console.log(response.data.foundUser);
-      dispatch(setUserData(response.data.foundUser));
-      /* dispatch(response.data.foundUser); */
-      /* const appointments = useSelector( (state) => state.appointments) */
-      /* console.log(appointments); */
-      // Actualizar el estado de los turnos con la respuesta del servidor
-      console.log("Usuario loggeado correctamente: ", response.data.foundUser);
+      const foundUser = response.data.foundUser;
 
-      alert(
-        "El usuario " +
-          response.data.foundUser.email +
-          " se a logeado correctamente: "
-      );
+      dispatch(setUserData(foundUser));
+      dispatch(setAppointmentsData(foundUser.appointment));
 
-      navigate("/")
-
+      alert("El usuario " + foundUser.email + " se ha logeado correctamente.");
     } catch (error) {
       console.error("Error al intentar ingresar:", error);
       alert("Usuario o contraseña incorrectos");
@@ -55,14 +32,16 @@ const LoginView = () => {
   };
 
   useEffect(() => {
-    console.log(userData, " 000000000000000000000000");
-  }, [userData]);
+    if (isLogged) {
+      navigate("/");
+    }
+  }, [isLogged]);
 
   return (
     <>
-      <Navbar /* isLogged = {loginState} */ />
-      <Login onButtonClick={handleButtonClick} />
+      <Login onButtonClick={handleLogin} />
     </>
   );
 };
+
 export default LoginView;
