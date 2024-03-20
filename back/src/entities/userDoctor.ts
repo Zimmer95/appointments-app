@@ -30,7 +30,7 @@ export default class UserDoctor {
   @Column({
     length: 100,
   })
-  dni: string;
+  matricula: string;
 
   @Column({ type: "enum", enum: ["male", "female", "other"] })
   gender: String;

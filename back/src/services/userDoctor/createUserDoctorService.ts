@@ -6,9 +6,10 @@ interface IUserDoctorDto {
   name: string;
   email: string;
   birthdate: Date;
-  dni: string;
+  matricula: string;
   gender: "male" | "female" | "other";
   phoneNumber: string;
+  speciality: string;
   password: string;
 }
 
@@ -17,9 +18,10 @@ export default async (userData: IUserDoctorDto): Promise<UserDoctor> => {
     name,
     email,
     birthdate,
-    dni,
+    matricula,
     gender,
     phoneNumber,
+    speciality,
     password,
   } = userData;
   const username = email;
@@ -29,8 +31,9 @@ export default async (userData: IUserDoctorDto): Promise<UserDoctor> => {
       name,
       email,
       birthdate,
-      dni,
+      matricula,
       gender,
+      speciality,
       phoneNumber,
     });
     const credentials: Credentials | null = await createCredential({
