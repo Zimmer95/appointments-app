@@ -1,12 +1,13 @@
 import { AppDataSource } from "../../config/data-source";
-import { Credentials, UserDoctor } from "../../entities";
+import { Credentials, Speciality, UserDoctor } from "../../entities";
+import { createSpeciality } from "../specialitys/specialityService";
 import { createCredential } from "../credentials/credentialsService";
 
 interface IUserDoctorDto {
   name: string;
   email: string;
   birthdate: Date;
-  matricula: string;
+  tuition: string;
   gender: "male" | "female" | "other";
   phoneNumber: string;
   speciality: string;
@@ -18,7 +19,7 @@ export default async (userData: IUserDoctorDto): Promise<UserDoctor> => {
     name,
     email,
     birthdate,
-    matricula,
+    tuition,
     gender,
     phoneNumber,
     speciality,
@@ -27,19 +28,14 @@ export default async (userData: IUserDoctorDto): Promise<UserDoctor> => {
   const username = email;
 
   try {
-    const newUser = AppDataSource.getRepository(UserDoctor).create({
-      name,
-      email,
-      birthdate,
-      matricula,
-      gender,
-      speciality,
-      phoneNumber,
-    });
+    const newUser = AppDataSource.getRepository(UserDoctor).create({ name, email, birthdate, tuition, gender, phoneNumber });
     const credentials: Credentials | null = await createCredential({
       username,
       password,
     });
+    const speciality: Speciality | null = await createSpeciality ({
+
+    })
 
     AppDataSource.manager.transaction(async (transactionalEntityManager) => {
       console.log("empezo transaccion");

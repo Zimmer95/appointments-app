@@ -1,10 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-} from "typeorm";
-import User from "./userPatient";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import UserPatient from "./userPatient";
 import UserDoctor from "./userDoctor";
 
@@ -39,8 +33,7 @@ export default class Appointment {
 
   @ManyToOne(() => UserPatient, (userPatient) => userPatient.appointment)
   userPatient: UserPatient;
-  
+
   @ManyToOne(() => UserDoctor, (userDoctor) => userDoctor.appointment)
   userDoctor: UserDoctor;
 }
-
