@@ -10,8 +10,8 @@ import {
 const userPatientRouter = Router();
 
 userPatientRouter.get("/", getUserPatient);
-userPatientRouter.post("/validate", validateUserPatient);
 userPatientRouter.get("/:id", getUserPatientById);
+userPatientRouter.post("/validate", validateUserPatient);
 userPatientRouter.post("/register", registerUserPatient);
 userPatientRouter.delete("/delete/:id", deleteUserPatient);
 

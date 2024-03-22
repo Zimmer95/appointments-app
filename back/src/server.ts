@@ -3,6 +3,8 @@ import cors from "cors";
 import userPatientRouter from "./routes/userPatientRouter";
 import userDoctorRouter from "./routes/userDoctorRouter";
 import appointmentsRouter from "./routes/appointmentsRouter";
+import specialitysRouter from "./routes/specialitysRouter";
+
 const app = express();
 
 app.use(express.json());
@@ -14,5 +16,7 @@ app.use("/doctor", userDoctorRouter);
 app.use("/patient", userPatientRouter);
 
 app.use("/appointment", appointmentsRouter);
+
+app.use("/speciality", specialitysRouter);
 
 export default app;
