@@ -19,20 +19,20 @@ export default async (userData: IUserDto) : Promise<UserPatient> => {
 
     try {
         
-        const newUser = AppDataSource.getRepository(UserPatient).create({ name, email, birthdate, dni, gender, phoneNumber });
+        const patient = AppDataSource.getRepository(UserPatient).create({ name, email, birthdate, dni, gender, phoneNumber });
         const credentials : Credentials | null = await createCredential({ username, password });
 
         AppDataSource.manager.transaction( async (transactionalEntityManager)=>{
             console.log("empezo transaccion");
             
-            await transactionalEntityManager.save(newUser);
-            newUser.credentials = credentials
-            await transactionalEntityManager.save(newUser);
+            await transactionalEntityManager.save(patient);
+            patient.credentials = credentials
+            await transactionalEntityManager.save(patient);
 
             console.log("termino transaccion");
         })
         
-        return newUser
+        return patient
     } catch (error) {
         console.error("Error al crear el usuario:", error);
         throw error;

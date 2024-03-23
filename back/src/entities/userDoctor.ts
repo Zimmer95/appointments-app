@@ -13,7 +13,7 @@ import Credentials from "./credentials";
 import Appointment from "./appointments";
 
 @Entity({ name: "user_doctor" })
-@Unique(["name", "email", "dni"])
+@Unique(["name", "email", "tuition", "speciality"])
 export default class UserDoctor {
   @PrimaryGeneratedColumn()
   id: string;

@@ -22,9 +22,6 @@ export default class Appointment {
   @Column({ length: 100 })
   doctorName: string;
 
-  @Column()
-  durationMinutes: number;
-
   @Column({ length: 100 })
   location: string;
 

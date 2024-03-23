@@ -4,7 +4,6 @@ import Speciality from "../../entities/speciality";
 
 
 export default async (req: Request, res: Response) => {
-    const{ name, location } = req.body;
-    const newSpeciality: Speciality = await createSpecialityService( { name, location }  );
+    const newSpeciality: Speciality = await createSpecialityService( req.body );
     res.status(200).json({ newSpeciality })
 };

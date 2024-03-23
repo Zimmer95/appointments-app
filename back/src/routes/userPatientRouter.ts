@@ -11,8 +11,8 @@ const userPatientRouter = Router();
 
 userPatientRouter.get("/", getUserPatient);
 userPatientRouter.get("/:id", getUserPatientById);
-userPatientRouter.post("/validate", validateUserPatient);
 userPatientRouter.post("/register", registerUserPatient);
+userPatientRouter.post("/validate", validateUserPatient);
 userPatientRouter.delete("/delete/:id", deleteUserPatient);
 
 export default userPatientRouter;

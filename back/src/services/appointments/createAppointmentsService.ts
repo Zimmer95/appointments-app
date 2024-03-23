@@ -9,7 +9,7 @@ export default async (appointmentData: IAppointments): Promise<Appointment> => {
 
     try {
         // Crear nueva cita
-        const newAppointment = AppDataSource.getRepository(Appointment).create({ date, time, status, patientName, doctorName, durationMinutes, location, notes });
+        const newAppointment = AppDataSource.getRepository(Appointment).create({ date, time, status, patientName, doctorName, location, notes });
 
         // Obtener usuario asociado a la cita
         const foundUser = await getUserPatientByIdService(userId);
