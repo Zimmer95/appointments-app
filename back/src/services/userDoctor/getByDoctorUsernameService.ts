@@ -1,12 +1,11 @@
 import { AppDataSource } from "../../config/data-source";
 import { UserDoctor } from "../../entities";
 
-export default async (user: string) => {
+export default async (userDoctor: string) => {
   const foundUser: UserDoctor | null = await AppDataSource.getRepository(
     UserDoctor
   ).findOne({
-    where: { email: user },
-    relations: ["credentials", "speciality", "appointment"],
+    where: { name: userDoctor }
   });
   if (!foundUser) {
     throw Error("usuario no encontrado");

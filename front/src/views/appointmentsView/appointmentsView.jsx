@@ -6,17 +6,24 @@ import { setAppointmentsData } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const AppointmentsView = () => {
-  const isLogged = useSelector((state) => state.userReducer.isLogged);
-  const userId = useSelector((state) => state.userReducer.userData.id);
+  
   const dispatch = useDispatch();
-  const appointments = useSelector(
-    (state) => state.userReducer.userAppointments
-  );
+  const data = useSelector((state) => state.userReducer);
+  const isLogged = data.isLogged;
+  const userId = data.userData.id;
+  const appointments = data.userAppointments
+
+
+  console.log(data, "___________DATA");
+  console.log(isLogged, "___________isLogged");
+  console.log(userId, "___________userId");
+  console.log(appointments, "___________appointments");
 
   const navigate = useNavigate();
 
   const handleGetAppointment = async () => {
     try {
+      
       const response = await axios.get("http://localhost:3000/patient/" + userId);
       const updateAppointments = response.data.foundUser.appointment.reverse();
       dispatch(setAppointmentsData(updateAppointments));
