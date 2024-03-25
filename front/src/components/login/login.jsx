@@ -62,7 +62,7 @@ const Login = ({ onButtonClick }) => {
                   className="error"
                 />
                 <br />
-                <NavLink to="/forgot-password">¿Olvidó su contraseña?</NavLink>
+                <NavLink className="forgotenPass" to="/forgot-password">¿Olvidó su contraseña?</NavLink>
               </div>
               <button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Ingresando..." : "Ingresar"}

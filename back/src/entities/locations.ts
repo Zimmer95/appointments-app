@@ -14,5 +14,5 @@ export default class Location {
   @Column({
     length: 100,
   })
-  room: string[];
+  room: string;
 }

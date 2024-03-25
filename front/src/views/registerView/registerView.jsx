@@ -9,7 +9,7 @@ const RegisterView = () => {
   const handleRegister = async (registerData) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/register",
+        "http://localhost:3000/patient/register",
         registerData
       );
       console.log("Se agregó un nuevo usuario:", response.data);

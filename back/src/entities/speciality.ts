@@ -1,8 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, OneToOne, Unique } from "typeorm";
 import UserDoctor from "./userDoctor";
 import Location from "./locations";
 
 @Entity({ name: "speciality" })
+@Unique(["name", "location"])
 export default class Speciality {
   @PrimaryGeneratedColumn()
   id: string;
@@ -12,7 +13,7 @@ export default class Speciality {
 
   @OneToOne(() => Location)
   @JoinColumn()
-  location: Location[];
+  location: Location;
 
   @OneToMany(() => UserDoctor, (userDoctor) => userDoctor.speciality)
   userDoctor: UserDoctor[];

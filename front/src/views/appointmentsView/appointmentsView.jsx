@@ -17,7 +17,7 @@ const AppointmentsView = () => {
 
   const handleGetAppointment = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/user/" + userId);
+      const response = await axios.get("http://localhost:3000/patient/" + userId);
       const updateAppointments = response.data.foundUser.appointment.reverse();
       dispatch(setAppointmentsData(updateAppointments));
     } catch (error) {

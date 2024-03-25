@@ -1,20 +1,17 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../../config/data-source";
-import UserDoctor from "../../entities/userDoctor";
+import { Speciality } from "../../entities";
 
 export default async (req: Request, res: Response) => {
-  const userId = req.params.id;
-  const foundUser: UserDoctor | null = await AppDataSource.getRepository(
-    UserDoctor
-  ).findOne({
-    where: { id: userId },
-    relations: ["speciality", "appointment"],
+  const specialityId = req.params.id;
+  const foundSpeciality: Speciality | null = await AppDataSource.getRepository(Speciality).findOne({
+    where: { id: specialityId }
   });
 
-  if (!foundUser) {
+  if (!foundSpeciality) {
     throw Error("Usuario no encontrado");
   }
 
-  await AppDataSource.getRepository(UserDoctor).remove(foundUser);
+  await AppDataSource.getRepository(Speciality).remove(foundSpeciality);
   return;
 };

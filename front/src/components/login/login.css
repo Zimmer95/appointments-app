@@ -58,6 +58,10 @@ label a:hover {
   margin: 1em;
 }
 
+.forgotenPass{
+  color: black !important;
+}
+
 @media (max-width: 768px) {
   .cardLogin {
     width: 80vw !important;

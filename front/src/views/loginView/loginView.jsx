@@ -15,7 +15,7 @@ const LoginView = () => {
   const handleLogin = async (loginData) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/validate/",
+        "http://localhost:3000/patient/validate/",
         loginData
       );
 
