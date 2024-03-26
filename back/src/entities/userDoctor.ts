@@ -13,13 +13,16 @@ import Credentials from "./credentials";
 import Appointment from "./appointments";
 
 @Entity({ name: "user_doctor" })
-@Unique(["name", "email", "tuition", "speciality"])
+@Unique(["firstName", "lastName", "email", "tuition", "speciality"])
 export default class UserDoctor {
   @PrimaryGeneratedColumn()
   id: string;
 
   @Column({ length: 100 })
-  name: string;
+  firstName: string;
+  
+  @Column({ length: 100 })
+  lastName: string;
 
   @Column({ length: 100 })
   email: string;
@@ -37,6 +40,9 @@ export default class UserDoctor {
 
   @Column({ length: 100 })
   phoneNumber: string;
+ 
+  @Column({ default: "doctor" })
+  rol: string;
 
   @OneToOne(() => Credentials)
   @JoinColumn()

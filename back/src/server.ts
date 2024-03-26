@@ -4,12 +4,19 @@ import userPatientRouter from "./routes/userPatientRouter";
 import userDoctorRouter from "./routes/userDoctorRouter";
 import appointmentsRouter from "./routes/appointmentsRouter";
 import specialitysRouter from "./routes/specialitysRouter";
+import adminRouter from "./routes/adminRouter";
+
 
 const app = express();
 
 app.use(express.json());
 
 app.use(cors());
+
+
+app.post("/validate", validateRouter);
+
+app.use("/admin", adminRouter);
 
 app.use("/doctor", userDoctorRouter);
 

@@ -1,7 +1,8 @@
 import { Credentials } from "../entities";
 
 interface IUserPatient {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     birthdate: Date;
     dni: string;

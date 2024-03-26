@@ -5,7 +5,9 @@ import { createCredential } from "../credentials/credentialsService";
 
 
  interface IUserDoctorDto {
-  name: string;
+  
+  firstName: string,
+  lastName: string,
   email: string;
   birthdate: Date;
   tuition: string;
@@ -15,11 +17,11 @@ import { createCredential } from "../credentials/credentialsService";
 }
 
 export default async (userData: IUserDoctorDto, foundSpeciality: Speciality): Promise<UserDoctor> => {
-  const { name, email, birthdate, tuition, gender, phoneNumber, password } = userData
+  const { firstName, lastName, email, birthdate, tuition, gender, phoneNumber, password } = userData
   const username = email
   
   try {
-    const doctor = AppDataSource.getRepository(UserDoctor).create({ name, email, birthdate, tuition, gender, phoneNumber });
+    const doctor = AppDataSource.getRepository(UserDoctor).create({ firstName, lastName, email, birthdate, tuition, gender, phoneNumber });
     const credentials: Credentials | null = await createCredential({ username, password });
 
     AppDataSource.manager.transaction(async (transactionalEntityManager) => {

@@ -5,6 +5,7 @@ const initialState = {
   isLogged: false,
   userData: {},
   userAppointments: [{}],
+  rol: "",
 };
 
 export const userSlice = createSlice({
@@ -14,11 +15,13 @@ export const userSlice = createSlice({
     setUserData: (state, action) => {
       state.userData = action.payload;
       state.isLogged = true;
+      state.rol = action.payload.rol
     },
 
     setUserLogout: (state, action) => {
       state.userData = {};
       state.isLogged = false;
+      state.rol = ""
     },
 
     setAppointmentsData: (state, action) => {
@@ -27,4 +30,8 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUserData, setUserLogout, setAppointmentsData } = userSlice.actions;
+export const {
+  setUserData,
+  setUserLogout,
+  setAppointmentsData
+} = userSlice.actions;

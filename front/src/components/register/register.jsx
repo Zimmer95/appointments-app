@@ -4,11 +4,13 @@ import * as Yup from "yup";
 import "./register.css";
 
 const Register = ({ onButtonClick }) => {
-  const isDoctor = true
-
+  
+  let isDoctor = false
+  
   
   const setIsDoctor = () =>{
     console.log("asdasdasd");
+    isDoctor = true
   }
 
   return (
@@ -83,23 +85,15 @@ const Register = ({ onButtonClick }) => {
               onChange={(e) => setIsDoctor(e.target.checked)}
             />
           </div>
-          {isDoctor ? (
             <div>
-              <label htmlFor="matricula">Matrícula:</label>
-              <Field id="matricula" name="matricula" type="text" />
+              <label htmlFor={isDoctor ? "matricula" : "dni"}>{isDoctor ? "Matricula: " : "Dni: "}</label>
+              <Field id={isDoctor ? "matricula" : "dni"} name={isDoctor ? "matricula" : "dni"} type="text" />
               <ErrorMessage
                 name="matricula"
                 component="div"
                 className="error"
               />
             </div>
-          ) : (
-            <div>
-              <label htmlFor="dni">DNI:</label>
-              <Field id="dni" name="dni" type="text" />
-              <ErrorMessage name="dni" component="div" className="error" />
-            </div>
-          )}
           <div>
             <label htmlFor="gender">Género:</label>
             <Field id="gender" name="gender" as="select">
