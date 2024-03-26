@@ -4,7 +4,9 @@ import Appointment from "../../entities/appointments";
 
 
 export default async (req: Request, res: Response) => {
-    const{ date, time, userId, status, patientName, doctorName, durationMinutes, location, notes } = req.body;
-    const newAppointment: Appointment = await createAppointmentsService( { date, time, userId, status, patientName, doctorName, durationMinutes, location, notes }  );
+    const patient  = req.body.userId
+    const doctor  = req.body.doctorName
+    
+    const newAppointment: Appointment = await createAppointmentsService(req.body, patient, doctor);
     res.status(200).json({ newAppointment })
 };

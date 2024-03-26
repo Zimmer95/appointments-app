@@ -17,12 +17,6 @@ export default class Appointment {
   status: "active" | "canceled";
 
   @Column({ length: 100 })
-  patientName: string;
-
-  @Column({ length: 100 })
-  doctorName: string;
-
-  @Column({ length: 100 })
   location: string;
 
   @Column()

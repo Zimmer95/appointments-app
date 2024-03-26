@@ -4,6 +4,13 @@ import * as Yup from "yup";
 import "./register.css";
 
 const Register = ({ onButtonClick }) => {
+  const isDoctor = true
+
+  
+  const setIsDoctor = () =>{
+    console.log("asdasdasd");
+  }
+
   return (
     <div className="cardRegister">
       <div className="card-header">
@@ -17,17 +24,27 @@ const Register = ({ onButtonClick }) => {
           name: "",
           birthdate: "",
           dni: "",
+          matricula: "",
           gender: "",
-          phoneNumber: ""
+          phoneNumber: "",
         }}
         validationSchema={Yup.object({
           email: Yup.string().required("El email es obligatorio"),
           password: Yup.string().required("La contraseña es obligatoria"),
           name: Yup.string().required("El nombre es obligatorio"),
-          birthdate: Yup.date().required("La fecha de nacimiento es obligatoria"),
-          dni: Yup.string().required("El DNI es obligatorio"),
+          birthdate: Yup.date().required(
+            "La fecha de nacimiento es obligatoria"
+          ),
+          dni: Yup.string().when("isDoctor", {
+            is: false,
+            then: Yup.string().required("Required"),
+          }),
+          matricula: Yup.string().when("isDoctor", {
+            is: true,
+            then: Yup.string().required("Required"),
+          }),
           gender: Yup.string().required("El género es obligatorio"),
-          phoneNumber: Yup.string()
+          phoneNumber: Yup.string(),
         })}
         onSubmit={(values, { setSubmitting }) => {
           // Aquí podrías enviar los datos al backend
@@ -56,11 +73,33 @@ const Register = ({ onButtonClick }) => {
             <Field id="birthdate" name="birthdate" type="date" />
             <ErrorMessage name="birthdate" component="div" className="error" />
           </div>
+
           <div>
-            <label htmlFor="dni">DNI:</label>
-            <Field id="dni" name="dni" type="text" />
-            <ErrorMessage name="dni" component="div" className="error" />
+            <label htmlFor="isDoctor">¿Es doctor?</label>
+            <Field
+              id="isDoctor"
+              name="isDoctor"
+              type="checkbox"
+              onChange={(e) => setIsDoctor(e.target.checked)}
+            />
           </div>
+          {isDoctor ? (
+            <div>
+              <label htmlFor="matricula">Matrícula:</label>
+              <Field id="matricula" name="matricula" type="text" />
+              <ErrorMessage
+                name="matricula"
+                component="div"
+                className="error"
+              />
+            </div>
+          ) : (
+            <div>
+              <label htmlFor="dni">DNI:</label>
+              <Field id="dni" name="dni" type="text" />
+              <ErrorMessage name="dni" component="div" className="error" />
+            </div>
+          )}
           <div>
             <label htmlFor="gender">Género:</label>
             <Field id="gender" name="gender" as="select">
@@ -73,7 +112,11 @@ const Register = ({ onButtonClick }) => {
           <div>
             <label htmlFor="phoneNumber">Número de teléfono:</label>
             <Field id="phoneNumber" name="phoneNumber" type="text" />
-            <ErrorMessage name="phoneNumber" component="div" className="error" />
+            <ErrorMessage
+              name="phoneNumber"
+              component="div"
+              className="error"
+            />
           </div>
           <button type="submit">Guardar</button>
         </Form>
