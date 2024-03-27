@@ -18,6 +18,6 @@ export default async (req: Request, res: Response) => {
     console.error("Error buscar usuario");
     res
       .status(500)
-      .json({ message: "Error interno del servidor al buscar usuario por ID" });
+      .json({ message: "Error interno del servidor al buscar usuario por ID 1" });
   }
 };

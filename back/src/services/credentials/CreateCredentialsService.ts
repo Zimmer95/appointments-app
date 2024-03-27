@@ -3,7 +3,7 @@ import { AppDataSource } from "../../config/data-source"
 import { Credentials } from "../../entities"
 
 
-export const createCredential =  async ( credentialData : ICredential ): Promise<Credentials> => { 
+export default async ( credentialData : ICredential ): Promise<Credentials> => { 
     const { username, password } =  credentialData
     const credentials : Credentials = AppDataSource.getRepository(Credentials).create({username: username, password: password})
     const results: Credentials = await AppDataSource.getRepository(Credentials).save(credentials)

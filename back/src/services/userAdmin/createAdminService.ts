@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../config/data-source";
 import { Credentials, UserAdmin} from "../../entities";
-import { createCredential } from "../credentials/credentialsService";
+import { createCredentialsService } from "../credentials";
 
 
  interface IAdminDto {
@@ -16,7 +16,7 @@ export default async (userData: IAdminDto): Promise<UserAdmin> => {
   
   try {
     const admin = AppDataSource.getRepository(UserAdmin).create({  firstName, lastName,  email});
-    const credentials: Credentials | null = await createCredential({ username, password });
+    const credentials: Credentials | null = await createCredentialsService({ username, password });
 
     AppDataSource.manager.transaction(async (transactionalEntityManager) => {
       await transactionalEntityManager.save(admin);

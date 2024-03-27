@@ -12,7 +12,7 @@ const adminRouter = Router();
 adminRouter.get("/", getAdmin);
 adminRouter.get("/:id", getAdminById);
 adminRouter.post("/register", registerAdmin);
-adminRouter.post("/validate", validateAdmin);
+/* adminRouter.post("/validate", validateAdmin); */
 adminRouter.delete("/delete/:id", deleteAdmin);
 
 export default adminRouter;

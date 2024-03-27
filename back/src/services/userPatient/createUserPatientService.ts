@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../config/data-source";
 import { Credentials, UserPatient } from "../../entities";
-import { createCredential } from "../credentials/credentialsService";
+import { createCredentialsService } from "../credentials";
 
 interface IUserDto{
         firstName: string,
@@ -20,7 +20,7 @@ export default async (userData: IUserDto) : Promise<UserPatient> => {
     try {
         
         const patient = AppDataSource.getRepository(UserPatient).create({ firstName, lastName, email, birthdate, dni, gender, phoneNumber });
-        const credentials : Credentials | null = await createCredential({ username, password });
+        const credentials : Credentials | null = await createCredentialsService({ username, password });
 
         AppDataSource.manager.transaction( async (transactionalEntityManager)=>{
             console.log("empezo transaccion");
