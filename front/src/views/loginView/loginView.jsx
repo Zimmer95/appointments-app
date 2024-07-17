@@ -15,10 +15,7 @@ const LoginView = () => {
   const handleLogin = async (loginData) => {
     try {
       console.log("Entro al primer try");
-      const response = await axios.post(
-        "http://localhost:3000/validate/",
-        loginData
-      );
+      const response = await axios.post("http://localhost:3000/validate", loginData);
       
       const foundUser = response.data;
       console.log(foundUser, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
